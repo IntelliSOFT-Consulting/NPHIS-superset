@@ -79,6 +79,8 @@ const DEFAULT_TAB_ARR = ['2', '3'];
 
 const WelcomeContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.grayscale.light4};
+  padding: 24px;
+
   .ant-row.menu {
     margin-top: -15px;
     background-color: ${({ theme }) => theme.colors.grayscale.light4};
@@ -98,26 +100,34 @@ const WelcomeContainer = styled.div`
       padding: 3px 21px;
     }
   }
+
   .antd5-card-meta-description {
     margin-top: ${({ theme }) => theme.gridUnit}px;
+    color: ${({ theme }) => theme.colors.text.white};
   }
+
   .antd5-card.ant-card-bordered {
-    border: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+    border: none;
   }
+
   .ant-collapse-item .ant-collapse-content {
     margin-bottom: ${({ theme }) => theme.gridUnit * -6}px;
+    padding: 16px 0;
   }
+
   div.ant-collapse-item:last-child.ant-collapse-item-active
     .ant-collapse-header {
     padding-bottom: ${({ theme }) => theme.gridUnit * 3}px;
   }
+
   div.ant-collapse-item:last-child .ant-collapse-header {
     padding-bottom: ${({ theme }) => theme.gridUnit * 9}px;
   }
+
   .loading-cards {
     margin-top: ${({ theme }) => theme.gridUnit * 8}px;
     .antd5-card-cover > div {
-      height: 168px;
+      height: 200px;
     }
   }
 `;

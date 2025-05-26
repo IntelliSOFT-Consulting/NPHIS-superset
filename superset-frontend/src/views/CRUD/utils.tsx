@@ -362,26 +362,38 @@ export const CardContainer = styled.div<{
   ${({ showThumbnails, theme }) => `
     overflow: hidden;
     display: grid;
-    grid-gap: ${theme.gridUnit * 12}px ${theme.gridUnit * 4}px;
-    grid-template-columns: repeat(auto-fit, 300px);
-    max-height: ${showThumbnails ? '314' : '148'}px;
-    margin-top: ${theme.gridUnit * -6}px;
-    padding: ${
-      showThumbnails
-        ? `${theme.gridUnit * 8 + 3}px ${theme.gridUnit * 9}px`
-        : `${theme.gridUnit * 8 + 1}px ${theme.gridUnit * 9}px`
-    };
+    grid-gap: ${theme.gridUnit * 6}px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    max-height: ${showThumbnails ? '400' : '200'}px;
+    margin-top: ${theme.gridUnit * 2}px;
+    padding: ${theme.gridUnit * 4}px;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      grid-gap: ${theme.gridUnit * 4}px;
+    }
+    
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
   `}
 `;
 
 export const CardStyles = styled.div`
   cursor: pointer;
+  transition: transform 0.2s ease;
+
   a {
     text-decoration: none;
   }
+
   .antd5-card-cover > div {
-    /* Height is calculated based on 300px width, to keep the same aspect ratio as the 800*450 thumbnails */
-    height: 168px;
+    /* Height is calculated based on improved aspect ratio for the new design */
+    height: 200px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
   }
 `;
 

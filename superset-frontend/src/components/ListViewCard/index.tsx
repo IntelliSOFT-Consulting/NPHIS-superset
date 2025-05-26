@@ -1,3 +1,4 @@
+/* eslint-disable theme-colors/no-literal-colors */
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -35,7 +36,9 @@ const ActionsWrapper = styled.div`
 const listViewCardTheme = {
   components: {
     Card: {
-      colorBgContainer: supersetTheme.colors.grayscale.light5,
+      colorBgContainer: 'transparent',
+      borderRadiusLG: 16,
+      paddingLG: 0,
     },
   },
 };
@@ -44,26 +47,44 @@ const listViewCardTheme = {
 const StyledCard = styled(Card)`
   ${({ theme }) => `
     overflow: hidden;
-
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1890ff 0%, #096dd9 50%, #0050b3 100%);
+    color: ${theme.colors.text.white};
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    
     .gradient-container {
       position: relative;
       height: 100%;
+      background: linear-gradient(135deg, rgba(24, 144, 255, 0.9) 0%, rgba(9, 109, 217, 0.9) 50%, rgba(0, 80, 179, 0.9) 100%);
     }
+
     &:hover {
-      box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light1};
-      transition: box-shadow ${theme.transitionTiming}s ease-in-out;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(24, 144, 255, 0.4);
+      transition: all 0.3s ease;
 
       .cover-footer {
         transform: translateY(0);
       }
     }
+
+    .ant-card-body {
+      padding: 0;
+    }
+
+    .ant-card-cover {
+      border-radius: 16px 16px 0 0;
+    }
   `}
 `;
 
 const Cover = styled.div`
-  height: 264px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+  height: 200px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
+  position: relative;
 
   .cover-footer {
     transform: translateY(${({ theme }) => theme.gridUnit * 9}px);
@@ -75,6 +96,7 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  padding: 24px 20px;
 
   .card-actions {
     margin-left: auto;
@@ -88,37 +110,75 @@ const TitleContainer = styled.div`
 
   .titleRow {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
     flex-direction: row;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .titleContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .titleTags {
+    margin-top: 8px;
+  }
+
+  .antd5-card-meta-description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0 20px 20px 20px;
   }
 `;
 
 const TitleLink = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+
   & a {
-    color: ${({ theme }) => theme.colors.grayscale.dark1} !important;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
   }
 `;
 
-const TitleRight = styled.span`
-  position: absolute;
-  right: -1px;
+const TitleRight = styled.div`
   font-weight: 400;
-  bottom: ${({ theme }) => theme.gridUnit}px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  margin-top: 8px;
 `;
 
 const CoverFooter = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  position: relative;
-  top: -${({ theme }) => theme.gridUnit * 9}px;
-  padding: 0 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
 `;
 
 const CoverFooterLeft = styled.div`
   flex: 1;
   overflow: hidden;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
 `;
 
 const CoverFooterRight = styled.div`
@@ -127,6 +187,8 @@ const CoverFooterRight = styled.div`
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
 `;
 
 const ThinSkeleton = styled(Skeleton)`
@@ -261,20 +323,26 @@ function ListViewCard({
               <TitleContainer>
                 {subtitle || null}
                 <div className="titleRow">
-                  <Tooltip title={title}>
-                    <TitleLink>
-                      {certifiedBy && (
-                        <>
-                          <CertifiedBadge
-                            certifiedBy={certifiedBy}
-                            details={certificationDetails}
-                          />{' '}
-                        </>
-                      )}
-                      {title}
-                    </TitleLink>
-                  </Tooltip>
-                  {titleRight && <TitleRight>{titleRight}</TitleRight>}
+                  <div className="titleContent">
+                    <Tooltip title={title}>
+                      <TitleLink>
+                        {certifiedBy && (
+                          <>
+                            <CertifiedBadge
+                              certifiedBy={certifiedBy}
+                              details={certificationDetails}
+                            />{' '}
+                          </>
+                        )}
+                        {title}
+                      </TitleLink>
+                    </Tooltip>
+                    {titleRight && (
+                      <div className="titleTags">
+                        <TitleRight>{titleRight}</TitleRight>
+                      </div>
+                    )}
+                  </div>
                   <div className="card-actions" data-test="card-actions">
                     {actions}
                   </div>
