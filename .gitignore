@@ -67,8 +67,6 @@ superset-websocket/config.json
 node_modules
 npm-debug.log*
 superset/static/assets/*
-!superset/static/assets/images/moh.png
-!superset/static/assets/images/nphi.png
 !superset/static/assets/.gitkeep
 superset/static/uploads/*
 !superset/static/uploads/.gitkeep
