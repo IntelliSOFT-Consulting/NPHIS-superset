@@ -199,7 +199,7 @@ block head_css %} {{ super() }}
         <div class="logo-placeholder moh-logo">
           <div class="logo-icon">
             <img
-              src="{{ url_for('static', filename='assets/images/moh.png') }}"
+              src="{{ appbuilder.app.config["MOH_LOGO"] }}"
               alt="MOH Logo"
             />
           </div>
@@ -208,7 +208,7 @@ block head_css %} {{ super() }}
         <div class="logo-placeholder nphi-logo">
           <div class="logo-icon">
             <img
-              src="{{ url_for('static', filename='assets/images/nphi.png') }}"
+              src="{{ appbuilder.app.config["NPHI_LOGO"] }}"
               alt="NPHI Logo"
             />
           </div>

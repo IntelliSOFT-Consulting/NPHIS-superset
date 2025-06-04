@@ -264,6 +264,8 @@ def menu_data(user: User) -> dict[str, Any]:
             "alt": appbuilder.app_name,
             "tooltip": appbuilder.app.config["LOGO_TOOLTIP"],
             "text": brand_text,
+            "moh_logo": appbuilder.app.config["MOH_LOGO"],
+            "nphi_logo": appbuilder.app.config["NPHI_LOGO"],
         },
         "environment_tag": get_environment_tag(),
         "navbar_right": {

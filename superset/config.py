@@ -313,6 +313,9 @@ APP_NAME = "Superset"
 # Specify the App icon
 APP_ICON = "/static/assets/images/superset-logo-horiz.png"
 
+MOH_LOGO = "/static/assets/images/moh.png"
+NPHI_LOGO = "/static/assets/images/nphi.png"
+
 # Specify where clicking the logo would take the user'
 # Default value of None will take you to '/superset/welcome'
 # You can also specify a relative URL e.g. '/superset/welcome' or '/dashboards/list'
