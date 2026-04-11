@@ -375,7 +375,8 @@
     "d3-color": "^3.1.0",
     "puppeteer": "^22.4.1",
     "underscore": "^1.13.7",
-    "jspdf": "^3.0.1"
+    "jspdf": "^3.0.1",
+    "basic-ftp": "5.2.2"
   },
   "readme": "ERROR: No README data found!",
   "scarfSettings": {
